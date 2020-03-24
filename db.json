@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": 1584927882080,
+      "name": "Brian adam",
+      "username": "Backend developer"
+    },
+    {
+      "id": 1584927906657,
+      "name": "Esa kencana",
+      "username": "UI/UX designer"
+    },
+    {
+      "name": "Andiko Mahendra",
+      "username": "Frontend Developer",
+      "id": 1585007158919
+    },
+    {
+      "name": "Indri lestari",
+      "username": "english educations",
+      "id": 1585007158920
+    }
+  ]
+}
