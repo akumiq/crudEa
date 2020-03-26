@@ -1,7 +1,9 @@
 import React from 'react'
+import { BrowserRouter as Router,Link } from "react-router-dom";
 
 const Navbar = (props) => {
    return (
+   <Router>
       <nav className="navbar navbar-expand-lg navbar-light bg-light rounded">
          <button 
             className   = "btn btn-default btn-info" 
@@ -25,31 +27,31 @@ const Navbar = (props) => {
                   <div className="modal-body text-dark">
                      <label htmlFor="exampleInputEmail1" >Nama Santri</label>
                      <input
-                        type="email" 
-                        className="form-control" 
-                        aria-describedby="emailHelp" 
-                        placeholder="Nama Santri.."
-                        onChange = {props.onHandleInput}
-                        value={props.postDataSantri.name}
-                        name = "name"
+                        type              = "email" 
+                        className         = "form-control" 
+                        aria-describedby  = "emailHelp" 
+                        placeholder       = "Nama Santri.."
+                        name              = "name"
+                        onChange          = {props.onHandleInput}
+                        value             = {props.postDataSantri.name}
                      />
                      <label htmlFor="exampleInputEmail1" className="mt-4">Jurusan</label>
                      <input 
-                        type="email" 
-                        className="form-control" 
-                        aria-describedby="emailHelp" 
-                        placeholder="Jurusan.."
-                        onChange = {props.onHandleInput}
-                        value={props.postDataSantri.username}
-                        name = "username"
+                        type              = "email" 
+                        className         = "form-control" 
+                        aria-describedby  = "emailHelp" 
+                        placeholder       = "Jurusan.."
+                        name              = "username"
+                        onChange          = {props.onHandleInput}
+                        value             = {props.postDataSantri.username}
                      />
                   </div>
                   <div className="modal-footer">
                      <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                      <button 
-                        type="button" 
-                        className="btn btn-success"
-                        onClick = {props.simpanDataSantri}   
+                        type     = "button" 
+                        className= "btn btn-success"
+                        onClick  = {props.simpanDataSantri}   
                      >
                         Simpan
                      </button>
@@ -63,8 +65,19 @@ const Navbar = (props) => {
             <span className="navbar-toggler-icon"></span>
          </button>
          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto">
-               <li className="navbar-item">
+            <ul className="navbar-nav">
+               <li className="nav-item ">
+                  <Link to="/Data_Santri" className="nav-link" > Data Santri </Link>
+               </li>
+               <li className="nav-item">
+                  <Link to="/Aktifitas_Santri" className="nav-link" >Aktifitas Santri</Link>
+               </li>
+               <li className="nav-item">
+                  <Link to="/" className="nav-link" >Home</Link>
+               </li>
+            </ul>
+               <ul className="m-2 ml-auto">
+               <li className="navbar-item ml-auto">
                   <input 
                      className   = "form-control mr-sm-2" 
                      type        = "search" 
@@ -76,6 +89,7 @@ const Navbar = (props) => {
             </ul>
          </div>
       </nav>
+   </Router>
    )
 }
 

@@ -1,10 +1,11 @@
 import React from 'react'
 import DataSantri from './dataSantri'
+import PageNotFound from './page404'
 
 const Contents = (props) => {
    return ( 
-      <div className="container-fluid">
-         { props.dataSantri ? 
+      <div className="container-fluid"> 
+      { props.dataSantri ? 
             <DataSantri 
             value             = {props.value}
             searchedSantri    = {props.searchedSantri}
@@ -16,8 +17,9 @@ const Contents = (props) => {
             onHandleDelete    = {props.onHandleDelete}
             dataUpdate        = {props.dataUpdate}
             simpanDataSantri  = {props.simpanDataSantri}
-            /> : null
-         }
+            />
+            : <PageNotFound/>
+      }
       </div>
    )
 }
