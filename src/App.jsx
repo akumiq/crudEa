@@ -8,12 +8,13 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-        dataSantri : [],
+      // state for crud
+        dataSantri    : [],
         newDataSantri : [],
-        value : '',
+        value         : '',
         postDataSantri : {
-          name  : '',
-          username : ''
+          name      : '',
+          username  : ''
         },
         isUpdate : false,
         
@@ -51,6 +52,16 @@ class App extends Component {
       this.getDataSantri()
     })
   }
+  simpanDataSantri = () => {
+    this.postDataSantri()
+    console.log('data telah tersimpan');
+    this.setState({
+      postDataSantri: {
+        name: '',
+        username: ''
+      }
+    })
+  }
   onHandleInput = (event) => {
     let NewPostDataSantri = {...this.state.postDataSantri}
     NewPostDataSantri[event.target.name] = event.target.value
@@ -61,16 +72,6 @@ class App extends Component {
     this.setState({
       postDataSantri : NewPostDataSantri
     }, () => {
-    })
-  }
-  simpanDataSantri = () => {
-    this.postDataSantri()
-    console.log('data telah tersimpan');
-    this.setState({
-      postDataSantri: {
-        name: '',
-        username: ''
-      }
     })
   }
   onHandleDelete = (id) => {
@@ -85,15 +86,6 @@ class App extends Component {
       postDataSantri : e,
       isUpdate : true
     })
-  }
-  onHandleUpdate = () => {
-    this.putDataSantri()
-      this.setState({
-        postDataSantri : {
-          name: '',
-          username: ''
-        }
-      })
   }
   searchedSantri = (e) => {
     this.setState ({
@@ -111,34 +103,47 @@ class App extends Component {
       }
     })
   }
+  onHandleUpdate = () => {
+    this.putDataSantri()
+      this.setState({
+        postDataSantri : {
+          name: '',
+          username: ''
+        }
+      })
+  }
 
   // FItur Pagination
   setPagination = () => {
-    const {dataSantri, currentPage, dataSantriPerPage, value, newDataSantri} = this.state
+    const {dataSantri, currentPage, dataSantriPerPage, value, newDataSantri} = this.state //destructuring assigments
     const lastIndexOfSantri   = currentPage * dataSantriPerPage //menentukan nilai lastindex
     const firstIndexOfSantri  = lastIndexOfSantri - dataSantriPerPage //menentukan nilai firstindex
 
+    // menghitung jumlah seluruh data perPagenya
     const dataSantriWithLimit = value && newDataSantri.length //pengkondisian ternary
                                 ?  newDataSantri.slice(firstIndexOfSantri, lastIndexOfSantri)
                                 : value && !newDataSantri.length
                                   ? null
-                                  : dataSantri.slice(firstIndexOfSantri, lastIndexOfSantri)  
-                                
+                                  : dataSantri.slice(firstIndexOfSantri, lastIndexOfSantri)
 
-    const paginationNumbers = []
+    const paginationNumbers = [] //variabel penampung jumlah pagination yg dibutuhkan
+
+    // MENGHITUNG seluruh datasantri yang ada.length
     const currentDataSantriLength = value && newDataSantri.length  //pengkondisian ternary
                                     ? newDataSantri.length 
                                     : value && !newDataSantri.length
                                       ? null 
                                       : dataSantri.length
 
+    // melooping hasil dari seluruh datasantri dibagi datasantriperpage(5) kemudian dibulatkan 
     for (let i = 1; i <= Math.ceil(currentDataSantriLength / dataSantriPerPage);  i++) {
-      paginationNumbers.push(i);
+      //hasil looping dipush / disimpan kedalam variabel paginationNumbers yg digunakan untuk menghitung jumlah paginationya
+      paginationNumbers.push(i); 
     }
 
     this.setState({
-      dataSantriWithLimit,
-      paginationNumbers
+      dataSantriWithLimit, //merubah this.state.dataSantriWithLimit menjadi (variabel) dataSantriWithLimit 
+      paginationNumbers   //merubah this.state.paginationNumbers menjadi (variabel) paginationNumbers
     }, () => {
       console.table(`dari setPagination`)
 
@@ -153,7 +158,6 @@ class App extends Component {
       {
         currentPage : Number(event.target.id)
       }, () => this.setPagination(),
-      console.log('tes tes', this.state.currentPage)
     )
   }
   onPreviousPage = () => {
