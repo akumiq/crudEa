@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
 const PagesActivitie = () => {
-   return (
-      <div>
-         PagesActivitie
-      </div>
-   )
+  return (
+    <div>
+      PagesActivitie
+    </div>
+  )
 }
 
 export default PagesActivitie
