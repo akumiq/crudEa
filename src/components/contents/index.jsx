@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 const Contents = (props) => {
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid p-4'>
       {
         props.dataSantri
           ? (

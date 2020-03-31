@@ -1,49 +1,94 @@
 {
   "posts": [
     {
-      "id": 1584927882080,
-      "name": "Brian adam",
-      "username": "Backend developer"
+      "id": 1585099188126,
+      "nama": "umar",
+      "jurusan": "dev"
     },
     {
-      "id": 1584921882080,
-      "name": "Brian adam",
-      "username": "Backend developer"
+      "id": 1585099195803,
+      "nama": "esa",
+      "jurusan": "dev"
     },
     {
-      "id": 1584921906657,
-      "name": "Esa kencana",
-      "username": "UI/UX designer"
+      "id": 1585099202828,
+      "nama": "adil",
+      "jurusan": "dev"
     },
     {
-      "name": "Diko Mahendra",
-      "username": "frontend dev",
-      "id": 1585181817951
+      "id": 1585099214996,
+      "nama": "abim",
+      "jurusan": "dev"
     },
     {
-      "name": "melisa febriani",
-      "username": "cooking",
-      "id": 1585182330558
+      "id": 1585099220982,
+      "nama": "fatkur",
+      "jurusan": "dev"
     },
     {
-      "name": "muhammad adam",
-      "username": "mobile developer",
-      "id": 1585182357222
+      "id": 1585099227619,
+      "nama": "rijal",
+      "jurusan": "dev"
     },
     {
-      "name": "indri lestari",
-      "username": "backend dev",
-      "id": 1585185521958
+      "id": 1585099233718,
+      "nama": "farhan",
+      "jurusan": "dev"
     },
     {
-      "name": "mira wiranti",
-      "username": "Casos",
-      "id": 1585185585903
+      "id": 1585099240668,
+      "nama": "suraji",
+      "jurusan": "dev"
     },
     {
-      "name": "ajshd",
-      "username": "sdjahja",
-      "id": 1585535098167
+      "id": 1585099252161,
+      "nama": "tsabit",
+      "jurusan": "dev"
+    },
+    {
+      "id": 1585099273189,
+      "nama": "hakim",
+      "jurusan": "dev"
+    },
+    {
+      "id": 1585099320502,
+      "nama": "alvin",
+      "jurusan": "dev"
+    },
+    {
+      "id": 1585099327599,
+      "nama": "ali",
+      "jurusan": "dev"
+    },
+    {
+      "id": 1585099333964,
+      "nama": "ahmad",
+      "jurusan": "dev"
+    },
+    {
+      "id": 1585099339683,
+      "nama": "eko",
+      "jurusan": "dev"
+    },
+    {
+      "id": 1585561161710,
+      "nama": "miqdad",
+      "jurusan": "dev"
+    },
+    {
+      "id": 1585561275746,
+      "nama": "miko",
+      "jurusan": "dev"
+    },
+    {
+      "id": 1585561357067,
+      "nama": "halo 01",
+      "jurusan": "developer"
+    },
+    {
+      "id": 1585561375555,
+      "nama": "santri 01",
+      "jurusan": "dev"
     }
   ]
 }

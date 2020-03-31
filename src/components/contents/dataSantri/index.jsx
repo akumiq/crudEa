@@ -1,5 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import {
+  Table,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input
+} from 'reactstrap'
 
 const renderDataSantri = (props) => {
   return props.searchedSantri && props.value
@@ -7,9 +19,17 @@ const renderDataSantri = (props) => {
     : props.dataSantri
 }
 
+let idDeleteSantri
+
 const DataSantri = (props) => {
+  const [isEditModalVisible, setEditModal] = useState(false)
+  const onToggleEditModal = () => setEditModal(!isEditModalVisible)
+
+  const [isDeleteModalVisible, setDeleteModal] = useState(false)
+  const onToggleDeleteModal = () => setDeleteModal(!isDeleteModalVisible)
+
   return (
-    <table className='table table-hover text-white'>
+    <Table striped className='text-light'>
       <thead>
         <tr>
           <th scope='col'>ID</th>
@@ -23,92 +43,126 @@ const DataSantri = (props) => {
           renderDataSantri(props).map((item, id) => (
             <tr key={id}>
               <th scope='row'>{item.id}</th>
-              <td>{item.name}</td>
-              <td>{item.username}</td>
-              <td className='row justify-content-center'>
-                <button
-                  className='btn btn-sm btn-default btn-danger'
-                  data-toggle='modal'
-                  data-target='#dataDelete'
-                >
-                  Delete
-                </button>
-                <button
-                  className='btn btn-sm btn-default btn-warning text-light ml-1'
-                  data-toggle='modal'
-                  data-target='#dataUpdate'
-                  onClick={() => props.dataUpdate(item)}
-                >
-                  Edit
-                </button>
-                <div className='modal fade' id='dataUpdate' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                  <div className='modal-dialog' role='document'>
-                    <div className='modal-content'>
-                      <div className='modal-header'>
-                        <h5 className='modal-title text-dark' id='exampleModal'>Update data santri</h5>
-                        <button type='button' className='close' data-dismiss='modal' aria-label='Close'>
-                          <span aria-hidden='true'>&times;</span>
-                        </button>
-                      </div>
-                      <div className='modal-body text-dark'>
-                        <label htmlFor='exampleInputEmail1'>Update Santri</label>
-                        <input
-                          className='form-control'
-                          placeholder='Nama Santri..'
-                          onChange={props.onHandleInput}
-                          name='name'
-                          value={props.postDataSantri.name}
-                        />
-                        <label htmlFor='exampleInputEmail1' className='mt-4'>Update Jurusan</label>
-                        <input
-                          className='form-control'
-                          placeholder='Jurusan...'
-                          onChange={props.onHandleInput}
-                          name='username'
-                          value={props.postDataSantri.username}
-                        />
-                      </div>
-                      <div className='modal-footer'>
-                        <button type='button' className='btn btn-outline-danger' data-dismiss='modal'>Close</button>
-                        <button
-                          type='button'
-                          className='btn btn-warning text-light'
-                          data-dismiss='modal'
-                          onClick={() => props.onHandleUpdate(item.id)}
-                        >
-                          Update
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+              <td>{item.nama}</td>
+              <td>{item.jurusan}</td>
+              <td>
+                <div className='row justify-content-center'>
+                  <Button
+                    className='mr-2'
+                    color='danger'
+                    onClick={() => {
+                      idDeleteSantri = item.id
+                      onToggleDeleteModal()
+                    }}
+                  >
+                    Delete
+                  </Button>
+                  <Button
+                    color='warning'
+                    onClick={() => {
+                      onToggleEditModal()
+                      props.dataUpdate(item)
+                    }}
+                  >
+                    Edit
+                  </Button>
                 </div>
-
-                <div className='modal fade' id='dataDelete' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                  <div className='modal-dialog' role='document'>
-                    <div className='modal-content'>
-                      <div className='modal-header justify-content-center'>
-                        <h5 className='modal-title text-dark ' id='exampleModal'>
-                          Yakin mau menghapus data santri ?
-                        </h5>
-                      </div>
-                      <div className='modal-footer justify-content-center'>
-                        <button className='btn btn-sm btn-default btn-danger' data-dismiss='modal' onClick={() => props.onHandleDelete(item.id)}>
-                          Hapus
-                        </button>
-                        <button type='button' className='btn btn-secondary btn-sm' data-dismiss='modal'>
-                          Close
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
               </td>
             </tr>
           ))
         }
+
+        <Modal
+          isOpen={isEditModalVisible}
+          toggle={onToggleEditModal}
+        >
+          <ModalHeader toggle={onToggleEditModal}>
+            Update Data Santri
+          </ModalHeader>
+
+          <ModalBody>
+            <Form>
+              <FormGroup>
+                <Label for='nama'>Nama Santri</Label>
+                <Input
+                  type='text'
+                  name='nama'
+                  id='nama'
+                  onChange={(e) => props.onHandleInput(e)}
+                  value={props.postDataSantri.nama}
+                  placeholder='nama santri'
+                />
+              </FormGroup>
+            </Form>
+
+            <Form>
+              <FormGroup>
+                <Label for='jurusan'>Jurusan Santri</Label>
+                <Input
+                  type='text'
+                  name='jurusan'
+                  id='jurusan'
+                  onChange={(e) => props.onHandleInput(e)}
+                  value={props.postDataSantri.jurusan}
+                  placeholder='jurusan santri'
+                />
+              </FormGroup>
+            </Form>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              color='info'
+              onClick={() => {
+                onToggleEditModal()
+                props.onHandleUpdate()
+              }}
+            >
+              Update
+            </Button>
+
+            <Button
+              color='secondary'
+              outline
+              onClick={onToggleEditModal}
+            >
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+
+        <Modal
+          isOpen={isDeleteModalVisible}
+          toggle={onToggleDeleteModal}
+        >
+          <ModalHeader
+            toggle={onToggleDeleteModal}
+          >
+            Apakah anda yakin ingin menghapus data ini?
+          </ModalHeader>
+
+          <ModalFooter>
+            <Button
+              color='secondary'
+              outline
+              onClick={() => {
+                onToggleDeleteModal()
+                props.onHandleDelete(idDeleteSantri)
+              }}
+            >
+              Delete
+            </Button>
+            <Button
+              color='info'
+              onClick={onToggleDeleteModal}
+            >
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+
       </tbody>
-    </table>
+    </Table>
   )
 }
 

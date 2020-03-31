@@ -1,82 +1,115 @@
 import React from 'react'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import {
+  // Modal,
+  // ModalHeader,
+  // ModalBody,
+  // Form,
+  // FormGroup,
+  // Label,
+  // Input,
+  // ModalFooter,
+  Button
+} from 'reactstrap'
 
 const Navbar = (props) => {
+  // const [isEditModalVisible, setEditModal] = useState(false)
+  // const onToggleEditModal = () => setEditModal(!isEditModalVisible)
+
   return (
-    <Router>
-      <nav className='navbar navbar-expand-lg navbar-light bg-light rounded'>
-        <button
-          className='btn btn-default btn-info'
-          data-toggle='modal'
-          data-target='#exampleModal'
-          onClick={() => props.buttonTambahSantri}
+    <div className='container-fluid p-4'>
+      <nav className='navbar navbar-expand-lg navbar-light bg-light rounded p-3'>
+        <Button
+          color='info'
+          // onClick={() => {
+          //   onToggleEditModal()
+          // }}
         >
           <i className='fa fa-user-plus'>Tambah santri</i>
-        </button>
+        </Button>
 
-        {/* MODAL */}
-        <div className='modal fade' id='exampleModal' tabIndex='-1' role='dialog' aria-labelledby='Updatedata' aria-hidden='true'>
-          <div className='modal-dialog' role='document'>
-            <div className='modal-content'>
-              <div className='modal-header'>
-                <h5 className='modal-title text-dark' id='Updatedata'>Tambah Santri</h5>
-                <button type='button' className='close' data-dismiss='modal' aria-label='Close'>
-                  <span aria-hidden='true'>&times;</span>
-                </button>
-              </div>
-              <div className='modal-body text-dark'>
-                <label htmlFor='exampleInputEmail1'>Nama Santri</label>
-                <input
-                  type='email'
-                  className='form-control'
-                  aria-describedby='emailHelp'
-                  placeholder='Nama Santri..'
-                  name='name'
+        {/* <Modal
+          isOpen={isEditModalVisible}
+          toggle={onToggleEditModal}
+        >
+          <ModalHeader toggle={onToggleEditModal}>
+            Buat Data Santri
+          </ModalHeader>
+
+          <ModalBody>
+            <Form>
+              <FormGroup>
+                <Label for='nama'>
+                  Nama Santri
+                </Label>
+
+                <Input
+                  type='text'
+                  name='nama'
+                  id='nama'
                   onChange={props.onHandleInput}
-                  value={props.postDataSantri.name}
+                  value={props.postDataSantri.nama}
+                  placeholder='nama santri'
                 />
-                <label htmlFor='exampleInputEmail1' className='mt-4'>Jurusan</label>
-                <input
-                  type='email'
-                  className='form-control'
-                  aria-describedby='emailHelp'
-                  placeholder='Jurusan..'
-                  name='username'
+              </FormGroup>
+            </Form>
+
+            <Form>
+              <FormGroup>
+                <Label for='jurusan'>
+                  Jurusan Santri
+                </Label>
+
+                <Input
+                  type='text'
+                  name='jurusan'
+                  id='jurusan'
                   onChange={props.onHandleInput}
-                  value={props.postDataSantri.username}
+                  value={props.postDataSantri.jurusan}
+                  placeholder='jurusan santri'
                 />
-              </div>
-              <div className='modal-footer'>
-                <button type='button' className='btn btn-secondary' data-dismiss='modal'>Close</button>
-                <button
-                  type='button'
-                  className='btn btn-success'
-                  onClick={() => props.simpanDataSantri()}
-                >
-                  Simpan
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+              </FormGroup>
+            </Form>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              color='info'
+              onClick={() => {
+                onToggleEditModal()
+                props.simpanDataSantri()
+              }}
+            >
+              Simpan
+            </Button>
+
+            <Button
+              color='secondary'
+              outline
+              onClick={onToggleEditModal}
+            >
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal> */}
 
         {/* FORM INPUT */}
-        <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+        <button
+          className='navbar-toggler'
+          type='button'
+          data-toggle='collapse'
+          data-target='#navbarSupportedContent'
+          aria-controls='navbarSupportedContent'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
           <span className='navbar-toggler-icon' />
         </button>
-        <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-          <ul className='navbar-nav'>
-            <li className='nav-item '>
-              <Link to='/Data_Santri' className='nav-link'> Data Santri </Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/Aktifitas_Santri' className='nav-link'>Aktifitas Santri</Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/' className='nav-link'>Home</Link>
-            </li>
-          </ul>
+
+        <div
+          className='collapse navbar-collapse'
+          id='navbarSupportedContent'
+        >
           <ul className='m-2 ml-auto'>
             <li className='navbar-item ml-auto'>
               <input
@@ -89,17 +122,17 @@ const Navbar = (props) => {
             </li>
           </ul>
         </div>
+
       </nav>
-    </Router>
+    </div>
   )
 }
 
 Navbar.propTypes = {
-  buttonTambahSantri: PropTypes.func,
-  searchedSantri: PropTypes.func,
-  postDataSantri: PropTypes.object,
-  onHandleInput: PropTypes.func,
-  simpanDataSantri: PropTypes.func
+  searchedSantri: PropTypes.func
+  // postDataSantri: PropTypes.object,
+  // onHandleInput: PropTypes.func,
+  // simpanDataSantri: PropTypes.func
 }
 
 export default Navbar
