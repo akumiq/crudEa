@@ -11,15 +11,13 @@ const Contents = (props) => {
           ? (
             <DataSantri
               value={props.value}
-              searchedSantri={props.searchedSantri}
-              newDataSantri={props.newDataSantri}
-              onHandleUpdate={props.onHandleUpdate}
-              postDataSantri={props.postDataSantri}
-              onHandleInput={props.onHandleInput}
               dataSantri={props.dataSantri}
+              newDataSantri={props.newDataSantri}
+              postDataSantri={props.postDataSantri}
+              onDataUpdate={props.onDataUpdate}
+              onHandleInput={props.onHandleInput}
+              onHandleUpdate={props.onHandleUpdate}
               onHandleDelete={props.onHandleDelete}
-              dataUpdate={props.dataUpdate}
-              simpanDataSantri={props.simpanDataSantri}
             />
           )
           : <PageNotFound />
@@ -29,16 +27,14 @@ const Contents = (props) => {
 }
 
 Contents.propTypes = {
-  dataSantri: PropTypes.array,
   value: PropTypes.string,
-  searchedSantri: PropTypes.func,
+  dataSantri: PropTypes.array,
   newDataSantri: PropTypes.array,
-  onHandleUpdate: PropTypes.func,
   postDataSantri: PropTypes.object,
+  onDataUpdate: PropTypes.func,
   onHandleInput: PropTypes.func,
-  onHandleDelete: PropTypes.func,
-  dataUpdate: PropTypes.func,
-  simpanDataSantri: PropTypes.func
+  onHandleUpdate: PropTypes.func,
+  onHandleDelete: PropTypes.func
 }
 
 export default Contents

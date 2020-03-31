@@ -14,7 +14,7 @@ import {
 } from 'reactstrap'
 
 const renderDataSantri = (props) => {
-  return props.searchedSantri && props.value
+  return props.value
     ? props.newDataSantri
     : props.dataSantri
 }
@@ -32,19 +32,41 @@ const DataSantri = (props) => {
     <Table striped className='text-light'>
       <thead>
         <tr>
-          <th scope='col'>ID</th>
-          <th scope='col'>Nama</th>
-          <th scope='col'>Jurusan</th>
-          <th scope='col' className='text-center'>Action</th>
+          <th
+            scope='col'
+            style={{ width: '20%' }}
+          >
+            ID
+          </th>
+          <th
+            scope='col'
+            style={{ width: '30%' }}
+          >
+            Nama
+          </th>
+          <th
+            scope='col'
+            style={{ width: '25%' }}
+          >
+            Jurusan
+          </th>
+          <th
+            scope='col'
+            style={{ width: '25%' }}
+            className='text-center'
+          >
+            Action
+          </th>
         </tr>
       </thead>
+
       <tbody>
         {
           renderDataSantri(props).map((item, id) => (
             <tr key={id}>
               <th scope='row'>{item.id}</th>
-              <td>{item.nama}</td>
-              <td>{item.jurusan}</td>
+              <td>{item.name}</td>
+              <td>{item.studyProgram}</td>
               <td>
                 <div className='row justify-content-center'>
                   <Button
@@ -60,8 +82,8 @@ const DataSantri = (props) => {
                   <Button
                     color='warning'
                     onClick={() => {
+                      props.onDataUpdate(item)
                       onToggleEditModal()
-                      props.dataUpdate(item)
                     }}
                   >
                     Edit
@@ -83,13 +105,13 @@ const DataSantri = (props) => {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label for='nama'>Nama Santri</Label>
+                <Label for='name'>Nama Santri</Label>
                 <Input
                   type='text'
-                  name='nama'
-                  id='nama'
+                  name='name'
+                  id='name'
                   onChange={(e) => props.onHandleInput(e)}
-                  value={props.postDataSantri.nama}
+                  value={props.postDataSantri.name}
                   placeholder='nama santri'
                 />
               </FormGroup>
@@ -97,13 +119,13 @@ const DataSantri = (props) => {
 
             <Form>
               <FormGroup>
-                <Label for='jurusan'>Jurusan Santri</Label>
+                <Label for='studyProgram'>Jurusan Santri</Label>
                 <Input
                   type='text'
-                  name='jurusan'
-                  id='jurusan'
+                  name='studyProgram'
+                  id='studyProgram'
                   onChange={(e) => props.onHandleInput(e)}
-                  value={props.postDataSantri.jurusan}
+                  value={props.postDataSantri.studyProgram}
                   placeholder='jurusan santri'
                 />
               </FormGroup>
@@ -114,8 +136,8 @@ const DataSantri = (props) => {
             <Button
               color='info'
               onClick={() => {
-                onToggleEditModal()
                 props.onHandleUpdate()
+                onToggleEditModal()
               }}
             >
               Update
@@ -146,8 +168,8 @@ const DataSantri = (props) => {
               color='secondary'
               outline
               onClick={() => {
-                onToggleDeleteModal()
                 props.onHandleDelete(idDeleteSantri)
+                onToggleDeleteModal()
               }}
             >
               Delete
@@ -167,11 +189,11 @@ const DataSantri = (props) => {
 }
 
 DataSantri.propTypes = {
-  onHandleUpdate: PropTypes.func,
   postDataSantri: PropTypes.object,
+  onDataUpdate: PropTypes.func,
   onHandleInput: PropTypes.func,
-  onHandleDelete: PropTypes.func,
-  dataUpdate: PropTypes.func
+  onHandleUpdate: PropTypes.func,
+  onHandleDelete: PropTypes.func
 }
 
 export default DataSantri

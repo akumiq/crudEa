@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Header from './components/header'
-import Navbar from './components/navbar'
+import MenuBar from './components/navbar'
 import Contents from './components/contents'
 import axios from 'axios'
 import {
@@ -19,8 +19,8 @@ class App extends Component {
       value: '',
       postDataSantri: {
         id: '',
-        nama: '',
-        jurusan: ''
+        name: '',
+        studyProgram: ''
       },
       isUpdate: false,
 
@@ -32,12 +32,11 @@ class App extends Component {
     }
   }
 
-  // fitur CRUD
   componentDidMount () {
-    this.getDataSantri()
+    this.onGetDataSantri()
   }
 
-  getDataSantri = () => {
+  onGetDataSantri = () => {
     axios.get('http://localhost:4000/posts?_sort=id&_order=desc')
       .then((result) => {
         this.setState({
@@ -45,45 +44,6 @@ class App extends Component {
         }, () => {
           this.setPagination()
         })
-      })
-  }
-
-  simpanDataSantri = () => {
-    this.postDataSantri()
-    this.setState({
-      postDataSantri: {
-        id: '',
-        nama: '',
-        jurusan: ''
-      }
-    })
-  }
-
-  onHandleUpdate = () => {
-    axios.put(`http://localhost:4000/posts/${this.state.postDataSantri.id}`, this.state.postDataSantri)
-      .then(() => {
-        this.getDataSantri()
-        this.setState({
-          postDataSantri: {
-            id: '',
-            nama: '',
-            jurusan: ''
-          }
-        })
-      })
-  }
-
-  onHandleDelete = (id) => {
-    axios.delete(`http://localhost:4000/posts/${id}`)
-      .then(() => {
-        this.getDataSantri()
-      })
-  }
-
-  postDataSantri = () => {
-    axios.post('http://localhost:4000/posts', this.state.postDataSantri)
-      .then(() => {
-        this.getDataSantri()
       })
   }
 
@@ -100,25 +60,62 @@ class App extends Component {
     })
   }
 
-  dataUpdate = (data) => {
+  onHandlePost = () => {
+    axios.post('http://localhost:4000/posts', this.state.postDataSantri)
+      .then(() => {
+        this.onGetDataSantri()
+        this.setState({
+          postDataSantri: {
+            id: '',
+            name: '',
+            studyProgram: ''
+          }
+        })
+      })
+  }
+
+  onHandleUpdate = () => {
+    axios.put(`http://localhost:4000/posts/${this.state.postDataSantri.id}`, this.state.postDataSantri)
+      .then(() => {
+        this.onGetDataSantri()
+        this.setState({
+          postDataSantri: {
+            id: '',
+            name: '',
+            studyProgram: ''
+          }
+        })
+      })
+  }
+
+  onDataUpdate = (data) => {
     this.setState({
       postDataSantri: data,
       isUpdate: true
     })
   }
 
-  searchedSantri = (e) => {
+  onHandleDelete = (id) => {
+    axios.delete(`http://localhost:4000/posts/${id}`)
+      .then(() => {
+        this.onGetDataSantri()
+      })
+  }
+
+  onSearchSantri = (e) => {
     this.setState({
       value: e.target.value
     }, () => {
       if (this.state.dataSantri) {
-        const searchedSantri = this.state.dataSantri.filter(
-          item => (
-            item.name.toLowerCase().indexOf(this.state.value.toLowerCase()) > -1
-          )
+        const searchDataSantri = this.state.dataSantri.filter(
+          (item) => {
+            return (
+              item.name.toLowerCase().indexOf(this.state.value.toLowerCase()) > -1
+            )
+          }
         )
         this.setState({
-          newDataSantri: searchedSantri
+          newDataSantri: searchDataSantri
         }, () => this.setPagination())
       }
     })
@@ -183,11 +180,11 @@ class App extends Component {
   render () {
     const {
       onHandleInput,
-      simpanDataSantri,
-      onHandleDelete,
+      onHandlePost,
       onHandleUpdate,
-      dataUpdate,
-      searchedSantri,
+      onHandleDelete,
+      onSearchSantri,
+      onDataUpdate,
       onPreviousPage,
       onNextPage
     } = this
@@ -205,27 +202,25 @@ class App extends Component {
         className='bg-info text-light'
         style={{ minHeight: '100vh' }}
       >
-
         <Header />
 
-        <Navbar
-          onHandleInput={onHandleInput}
-          simpanDataSantri={simpanDataSantri}
+        <MenuBar
           postDataSantri={postDataSantri}
-          searchedSantri={searchedSantri}
+          value={value}
+          onHandleInput={onHandleInput}
+          onHandlePost={onHandlePost}
+          onSearchSantri={onSearchSantri}
         />
 
         <Contents
-          onHandleUpdate={onHandleUpdate}
-          onHandleInput={onHandleInput}
-          simpanDataSantri={simpanDataSantri}
-          onHandleDelete={onHandleDelete}
-          dataUpdate={dataUpdate}
-          newDataSantri={dataSantriWithLimit} // update pagination
-          dataSantri={dataSantriWithLimit} // update for fitur pagination
-          postDataSantri={postDataSantri}
-          searchedSantri={searchedSantri}
           value={value}
+          dataSantri={dataSantriWithLimit} // update for fitur pagination
+          newDataSantri={dataSantriWithLimit} // update pagination
+          postDataSantri={postDataSantri}
+          onDataUpdate={onDataUpdate}
+          onHandleInput={onHandleInput}
+          onHandleUpdate={onHandleUpdate}
+          onHandleDelete={onHandleDelete}
         />
 
         <Pagination
@@ -260,7 +255,6 @@ class App extends Component {
             </PaginationLink>
           </PaginationItem>
         </Pagination>
-
       </div>
     )
   }

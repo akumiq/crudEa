@@ -1,54 +1,65 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
-  // Modal,
-  // ModalHeader,
-  // ModalBody,
-  // Form,
-  // FormGroup,
-  // Label,
-  // Input,
-  // ModalFooter,
-  Button
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  ModalFooter,
+  Button,
+  Navbar,
+  Collapse,
+  Nav,
+  NavItem,
+  NavbarToggler
 } from 'reactstrap'
 
-const Navbar = (props) => {
-  // const [isEditModalVisible, setEditModal] = useState(false)
-  // const onToggleEditModal = () => setEditModal(!isEditModalVisible)
+const MenuBar = (props) => {
+  const [isCreateModalVisible, setCreateModal] = useState(false)
+  const onToggleCreateModal = () => setCreateModal(!isCreateModalVisible)
+
+  const [isNavbarVisible, setNavbarOpen] = useState(false)
+  const onToggleNavbar = () => setNavbarOpen(!isNavbarVisible)
 
   return (
     <div className='container-fluid p-4'>
-      <nav className='navbar navbar-expand-lg navbar-light bg-light rounded p-3'>
+      <Navbar
+        color='light'
+        light
+        expand='md'
+        className='rounded'
+      >
         <Button
           color='info'
-          // onClick={() => {
-          //   onToggleEditModal()
-          // }}
+          onClick={onToggleCreateModal}
         >
-          <i className='fa fa-user-plus'>Tambah santri</i>
+          Tambah santri
         </Button>
 
-        {/* <Modal
-          isOpen={isEditModalVisible}
-          toggle={onToggleEditModal}
+        <Modal
+          isOpen={isCreateModalVisible}
+          toggle={onToggleCreateModal}
         >
-          <ModalHeader toggle={onToggleEditModal}>
+          <ModalHeader toggle={onToggleCreateModal}>
             Buat Data Santri
           </ModalHeader>
 
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label for='nama'>
+                <Label for='name'>
                   Nama Santri
                 </Label>
 
                 <Input
                   type='text'
-                  name='nama'
-                  id='nama'
-                  onChange={props.onHandleInput}
-                  value={props.postDataSantri.nama}
+                  name='name'
+                  id='name'
+                  onChange={(e) => props.onHandleInput(e)}
+                  value={props.postDataSantri.name}
                   placeholder='nama santri'
                 />
               </FormGroup>
@@ -56,16 +67,16 @@ const Navbar = (props) => {
 
             <Form>
               <FormGroup>
-                <Label for='jurusan'>
+                <Label for='studyProgram'>
                   Jurusan Santri
                 </Label>
 
                 <Input
                   type='text'
-                  name='jurusan'
-                  id='jurusan'
-                  onChange={props.onHandleInput}
-                  value={props.postDataSantri.jurusan}
+                  name='studyProgram'
+                  id='studyProgram'
+                  onChange={(e) => props.onHandleInput(e)}
+                  value={props.postDataSantri.studyProgram}
                   placeholder='jurusan santri'
                 />
               </FormGroup>
@@ -76,8 +87,8 @@ const Navbar = (props) => {
             <Button
               color='info'
               onClick={() => {
-                onToggleEditModal()
-                props.simpanDataSantri()
+                props.onHandlePost()
+                onToggleCreateModal()
               }}
             >
               Simpan
@@ -86,53 +97,38 @@ const Navbar = (props) => {
             <Button
               color='secondary'
               outline
-              onClick={onToggleEditModal}
+              onClick={onToggleCreateModal}
             >
               Cancel
             </Button>
           </ModalFooter>
-        </Modal> */}
+        </Modal>
 
-        {/* FORM INPUT */}
-        <button
-          className='navbar-toggler'
-          type='button'
-          data-toggle='collapse'
-          data-target='#navbarSupportedContent'
-          aria-controls='navbarSupportedContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
-          <span className='navbar-toggler-icon' />
-        </button>
-
-        <div
-          className='collapse navbar-collapse'
-          id='navbarSupportedContent'
-        >
-          <ul className='m-2 ml-auto'>
-            <li className='navbar-item ml-auto'>
-              <input
+        <NavbarToggler onClick={onToggleNavbar} />
+        <Collapse isOpen={isNavbarVisible} navbar>
+          <Nav className='ml-auto' navbar>
+            <NavItem>
+              <Input
                 className='form-control mr-sm-2'
                 type='search'
-                placeholder='Search'
-                aria-label='Search'
-                onChange={() => props.searchedSantri()}
+                placeholder='cari santri'
+                value={props.value}
+                onChange={(e) => props.onSearchSantri(e)}
               />
-            </li>
-          </ul>
-        </div>
-
-      </nav>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   )
 }
 
-Navbar.propTypes = {
-  searchedSantri: PropTypes.func
-  // postDataSantri: PropTypes.object,
-  // onHandleInput: PropTypes.func,
-  // simpanDataSantri: PropTypes.func
+MenuBar.propTypes = {
+  postDataSantri: PropTypes.object,
+  value: PropTypes.string,
+  onHandleInput: PropTypes.func,
+  onHandlePost: PropTypes.func,
+  onSearchSantri: PropTypes.func
 }
 
-export default Navbar
+export default MenuBar

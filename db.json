@@ -2,93 +2,138 @@
   "posts": [
     {
       "id": 1585099188126,
-      "nama": "umar",
-      "jurusan": "dev"
+      "name": "umar",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099195803,
-      "nama": "esa",
-      "jurusan": "dev"
+      "name": "esa",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099202828,
-      "nama": "adil",
-      "jurusan": "dev"
+      "name": "adil",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099214996,
-      "nama": "abim",
-      "jurusan": "dev"
+      "name": "abim",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099220982,
-      "nama": "fatkur",
-      "jurusan": "dev"
+      "name": "fatkur",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099227619,
-      "nama": "rijal",
-      "jurusan": "dev"
+      "name": "rijal",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099233718,
-      "nama": "farhan",
-      "jurusan": "dev"
+      "name": "farhan",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099240668,
-      "nama": "suraji",
-      "jurusan": "dev"
+      "name": "suraji",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099252161,
-      "nama": "tsabit",
-      "jurusan": "dev"
+      "name": "tsabit",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099273189,
-      "nama": "hakim",
-      "jurusan": "dev"
+      "name": "hakim",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099320502,
-      "nama": "alvin",
-      "jurusan": "dev"
+      "name": "alvin",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099327599,
-      "nama": "ali",
-      "jurusan": "dev"
+      "name": "ali",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099333964,
-      "nama": "ahmad",
-      "jurusan": "dev"
+      "name": "ahmad",
+      "studyProgram": "dev"
     },
     {
       "id": 1585099339683,
-      "nama": "eko",
-      "jurusan": "dev"
+      "name": "eko",
+      "studyProgram": "dev"
     },
     {
       "id": 1585561161710,
-      "nama": "miqdad",
-      "jurusan": "dev"
+      "name": "miqdad",
+      "studyProgram": "dev"
     },
     {
       "id": 1585561275746,
-      "nama": "miko",
-      "jurusan": "dev"
+      "name": "miko",
+      "studyProgram": "dev"
     },
     {
       "id": 1585561357067,
-      "nama": "halo 01",
-      "jurusan": "developer"
+      "name": "ciko",
+      "studyProgram": "dev"
     },
     {
       "id": 1585561375555,
-      "nama": "santri 01",
-      "jurusan": "dev"
+      "name": "santri 01",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585621612447,
+      "name": "santri 02",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585622202722,
+      "name": "santri 03",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585622218744,
+      "name": "santri 04",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585622728063,
+      "name": "santri 05",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585624264260,
+      "name": "santri 06",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585624622386,
+      "name": "santri 07",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585624976500,
+      "name": "santri 08",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585625280378,
+      "name": "santri 09",
+      "studyProgram": "dev"
+    },
+    {
+      "id": 1585627207016,
+      "name": "santri 10",
+      "studyProgram": "dev"
     }
   ]
 }
