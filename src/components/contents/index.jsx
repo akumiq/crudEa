@@ -8,18 +8,7 @@ const Contents = (props) => {
     <div className='container-fluid p-4'>
       {
         props.dataSantri
-          ? (
-            <DataSantri
-              value={props.value}
-              dataSantri={props.dataSantri}
-              newDataSantri={props.newDataSantri}
-              postDataSantri={props.postDataSantri}
-              onDataUpdate={props.onDataUpdate}
-              onHandleInput={props.onHandleInput}
-              onHandleUpdate={props.onHandleUpdate}
-              onHandleDelete={props.onHandleDelete}
-            />
-          )
+          ? <DataSantri {...props} />
           : <PageNotFound />
       }
     </div>
@@ -27,14 +16,7 @@ const Contents = (props) => {
 }
 
 Contents.propTypes = {
-  value: PropTypes.string,
-  dataSantri: PropTypes.array,
-  newDataSantri: PropTypes.array,
-  postDataSantri: PropTypes.object,
-  onDataUpdate: PropTypes.func,
-  onHandleInput: PropTypes.func,
-  onHandleUpdate: PropTypes.func,
-  onHandleDelete: PropTypes.func
+  dataSantri: PropTypes.array
 }
 
 export default Contents
