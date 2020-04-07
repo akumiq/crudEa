@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
   Pagination,
@@ -6,43 +6,74 @@ import {
   PaginationLink
 } from 'reactstrap'
 
-const PaginationButton = (props) => {
-  return (
-    <Pagination
-      className='pagination justify-content-end m-4'
-      aria-label='Page navigation example'
-    >
-      <PaginationItem disabled={props.currentPage <= 1}>
-        <PaginationLink onClick={props.onPreviousPage}>
-          Previous
-        </PaginationLink>
-      </PaginationItem>
+class PaginationButton extends Component {
+  render () {
+    const previousBtn = {
+      disabled: this.isDisabledPrevious(),
+      onClick: this.props.onPreviousPage,
+      titleBtn: 'Previous'
+    }
 
-      {props.paginationNumbers.map((item, index) => (
-        <PaginationItem
-          key={index}
-          active={props.currentPage === item}
-        >
-          <PaginationLink
-            id={item}
-            onClick={(event) => props.onMovePage(event)}
-          >
-            {item}
-          </PaginationLink>
-        </PaginationItem>
-      ))}
+    const nextBtn = {
+      disabled: this.isDisabledNext(),
+      onClick: this.props.onNextPage,
+      titleBtn: 'Next'
+    }
 
-      <PaginationItem
-        disabled={
-          props.currentPage === props.paginationNumbers.length
-        }
+    return (
+      <Pagination
+        className='pagination justify-content-end m-4'
+        aria-label='Page navigation example'
       >
-        <PaginationLink onClick={props.onNextPage}>
-          Next
+        {this.renderActionButton(previousBtn)}
+
+        {this.renderPaginationButton()}
+
+        {this.renderActionButton(nextBtn)}
+      </Pagination>
+    )
+  }
+
+  renderActionButton = (props = { active: false, id: 'id kosong' }) => {
+    return (
+      <PaginationItem
+        key={props.key}
+        disabled={props.disabled}
+        active={props.active}
+      >
+        <PaginationLink
+          id={props.id}
+          onClick={props.onClick}
+        >
+          {props.titleBtn}
         </PaginationLink>
       </PaginationItem>
-    </Pagination>
-  )
+    )
+  }
+
+  renderPaginationButton = () => {
+    return (
+      this.props.paginationNumbers.map((item, index) => {
+        const paginationNumberBtn = {
+          key: index,
+          active: this.props.currentPage === item,
+          id: item,
+          titleBtn: item,
+          onClick: this.props.onMovePage
+        }
+
+        return this.renderActionButton(paginationNumberBtn)
+      })
+    )
+  }
+
+  isDisabledPrevious = () => {
+    return this.props.currentPage <= 1
+  }
+
+  isDisabledNext = () => {
+    return this.props.currentPage === this.props.paginationNumbers.length
+  }
 }
 
 PaginationButton.propTypes = {
