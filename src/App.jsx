@@ -230,9 +230,9 @@ class App extends Component {
             color: 'white'
           }}
         >
-          {/* <h6>
+          <h6>
             © 2020 Template by <a href='https://github.com/Diko99'>Diko Mahendra</a>
-          </h6> */}
+          </h6>
         </div>
       </div>
     )
