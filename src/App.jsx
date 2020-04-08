@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   onGetDataSantri = () => {
-    axios.get('http://localhost:4000/posts?_sort=id&_order=desc')
+    axios.get('http://my-json-server.typicode.com/akumiq/crudEa/posts?_sort=id&_order=desc')
       .then((result) => {
         this.setState({
           dataSantri: result.data
@@ -223,6 +223,17 @@ class App extends Component {
           onPreviousPage={onPreviousPage}
           onNextPage={onNextPage}
         />
+
+        <div
+          className='ml-5 mt-5'
+          style={{
+            color: 'white'
+          }}
+        >
+          <h6>
+            © 2020 Template by <a href='https://github.com/Diko99'>Diko Mahendra</a>
+          </h6>
+        </div>
       </div>
     )
   }
